@@ -1,0 +1,57 @@
+
+body {
+    background-image: linear-gradient(to left, #995e7a80 20%, #7da9cf80 100%), url(../img/wall.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.profile {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  background: #33333380;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  
+}
+
+.profile img{
+  border-radius: 50%;
+  width: 4%;
+}
+
+.music {
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+    
+}
+
+.Main {
+  height: 10em;
+  position: relative 
+}
+
+.Main h3 {
+  color: whitesmoke;
+  font-size: 30;
+  font-family: 'Ubuntu Mono', monospace;
+  margin: 0;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) 
+}

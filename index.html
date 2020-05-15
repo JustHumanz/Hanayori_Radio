@@ -1,0 +1,61 @@
+<html>
+    <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="author" content="Yago Estévez" />
+    <meta name="description" content="Easy Sliding Menu by Yago Estévez" />
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidenav.css">
+    <link rel="stylesheet" href="css/plyr.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+        <title>
+            Hanayori Radio
+        </title>
+    </head>
+    <body>
+        <div class="profile">
+            <a href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="img/Kano.jpg"></a>
+            <a href="https://www.youtube.com/channel/UCV2m2UifDGr3ebjSnDv5rUA?sub_confirmation=1" target="_blank"><img src="img/Hitona Kohigashi.jpg"></a>
+            <a href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="img/Hareru Hanamaru.jpg"></a>
+            <a href="https://www.youtube.com/channel/UCiexEBp7-D46FXUtQ-BpgWg?sub_confirmation=1" target="_blank"><img src="img/Nonono Nonomiya.jpg"></a>
+        </div>
+        <div class="menu">
+            <p>Live</p>
+            <p>Upcoming</p>
+            <p>Last</p>
+        </div>
+        <div class="menu__toggler"><span></span></div>
+        <div class=Main>
+            <h3>Foo Bar</h3>
+        </div>
+        <div class="music">
+            <audio id="player" controls loop>
+                <source src="http://radio.justhumanz.me/stream" type="audio/mp3" />
+            </audio>
+        </siv>
+    </body>
+    <script src="js/plyr.min.js"></script>
+    <script src="js/plyr.polyfilled.min.js"></script>
+    <script>
+        // Change "{}" to your options:
+        // https://github.com/sampotts/plyr/#options
+        const player = new Plyr('audio', {
+            title: 'Hanayori music radio'
+        });
+        window.player = player;
+    </script>
+    <script>
+        const toggler = document.querySelector(".menu__toggler");
+        const menu = document.querySelector(".menu");
+        const profile = document.querySelector(".profile");
+
+        /*
+        * Toggles on and off the 'active' class on the menu
+        * and the toggler button.
+        */
+        toggler.addEventListener("click", () => {
+        toggler.classList.toggle("active");
+        menu.classList.toggle("active");
+        });
+    </script>
+</html>
