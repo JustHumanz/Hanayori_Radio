@@ -1,6 +1,6 @@
 
 body {
-    background-image: linear-gradient(to left, #995e7a80 20%, #7da9cf80 100%), url(../img/wall.png);
+    background-image: linear-gradient(to left, #995e7a80 20%, #7da9cf80 100%), url(../img/wall2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -22,13 +22,66 @@ body {
   padding: 5px;
   position: relative;
   text-align: center;
-  display: inline-block;
-  
 }
 
-.profile img{
+.kano img{
   border-radius: 50%;
   width: 4%;
+  cursor:pointer;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+
+}
+
+.kano:hover img {
+  transform: scale(1.1);
+ -ms-transform: scale(1.1); 
+ -webkit-transform: scale(1.1);   
+ }
+
+ .Hitona img{
+  border-radius: 50%;
+  width: 4%;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+
+}
+
+.Hitona:hover img {
+  transform: scale(1.1);
+ -ms-transform: scale(1.1); 
+ -webkit-transform: scale(1.1);
+ }
+
+.Hareru img{
+  border-radius: 50%;
+  width: 4%;
+  cursor:pointer;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+
+}
+
+.Hareru:hover img {
+  transform: scale(1.1);
+ -ms-transform: scale(1.1); 
+ -webkit-transform: scale(1.1);
+}
+
+.Nonono img{
+  border-radius: 50%;
+  width: 4%;
+  cursor:pointer;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+
+}
+
+.Nonono:hover img {
+  transform: scale(1.1);
+ -ms-transform: scale(1.1); 
+ -webkit-transform: scale(1.1);
 }
 
 .music {
