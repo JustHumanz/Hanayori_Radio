@@ -50,7 +50,7 @@
             <div class="menu__toggler"><span></span></div>
             <div class=main>
                 {% if status.status == "upcoming" %}
-                    <h3>{{ status.status }} Start at {{ live.time }} JST</h3>
+                    <h3>{{ status.status }} Start at {{ live.time }}</h3>
                     <img src="https://img.youtube.com/vi/{{ video.videoid }}/maxresdefault.jpg" alt="" height="230" width="400">
                 {% else %}
                     <h3>It seems like there is no livestream for now</h3>
