@@ -1,0 +1,71 @@
+<html>
+    <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="icon" href="static/img/icon.png" type="image/icon type">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/sidenav.css">
+        <title>
+            {{ title }}
+        </title>
+    </head>
+    <body>
+            <div class="profile">
+                <!-- Kano Profil when live-->
+                {% if channel.channelid == "UCfuz6xYbYFGsWWBi3SpJI1w" %}
+                    <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Kano.jpg"></a>
+                {% else %}
+                    <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Kano.jpg"></a>
+                {% endif %}    
+
+                <!-- Hitona Profil when live-->
+                {% if channel.channelid == "UCV2m2UifDGr3ebjSnDv5rUA" %}                    
+                    <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Hitona Kohigashi.jpg"></a>
+                {% else %}
+                    <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Hitona Kohigashi.jpg"></a>
+                {% endif %}
+
+                <!-- Hareru Profil when live-->
+                {% if channel.channelid == "UCyIcOCH-VWaRKH9IkR8hz7Q" %}
+                    <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Hareru Hanamaru.jpg"></a>
+                {% else %}
+                    <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Hareru Hanamaru.jpg"></a>
+                {% endif %}
+                
+                <!-- Nonono Profil when live-->
+                {% if channel.channelid == "UCiexEBp7-D46FXUtQ-BpgWg" %}
+                    <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Nonono Nonomiya.jpg"></a>
+                {% else %}    
+                    <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Nonono Nonomiya.jpg"></a>
+                {% endif %}
+            </div>
+            <div class="menu">
+                <p><a href="/">Home</a></p>
+                <p><a href="/Live">Live</a> </p>
+                <p><a href="/Upcome">Upcoming</a> </p>
+                <p><a href="/Last">Last</a></p>
+            </div>
+            <div class="menu__toggler"><span></span></div>
+            {% if status.status == "null" %}
+                <div class=main>
+                    <h3>It seems like there is no live stream for now</h3>
+                    <img src="static/img/asset/parerunworry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; margin-top: 5%; width: 30%;">
+                </div>
+            {% else %}
+                <div id="st" style="position: relative; text-align: center; margin-top: 10%;">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/live_stream?channel={{ channel.channelid }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+
+    </body>
+    <script>
+        const toggler = document.querySelector(".menu__toggler");
+        const menu = document.querySelector(".menu");
+        const profile = document.querySelector(".profile");
+
+        toggler.addEventListener("click", () => {
+        toggler.classList.toggle("active");
+        menu.classList.toggle("active");
+        });
+    </script>
+</html>

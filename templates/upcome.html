@@ -1,0 +1,71 @@
+<html>
+    <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="icon" href="static/img/icon.png" type="image/icon type">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/sidenav.css">
+    <link rel="stylesheet" href="static/css/plyr.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+        <title>
+            {{ title }}
+        </title>
+    </head>
+    <body>
+        <div class="profile">
+            <!-- Kano Profil when live-->
+            {% if channel.channelid == "UCfuz6xYbYFGsWWBi3SpJI1w" %}
+                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Kano.jpg"></a>
+            {% else %}
+                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Kano.jpg"></a>
+            {% endif %}    
+
+            <!-- Hitona Profil when live-->
+            {% if channel.channelid == "UCV2m2UifDGr3ebjSnDv5rUA" %}                    
+                <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Hitona Kohigashi.jpg"></a>
+            {% else %}
+                <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Hitona Kohigashi.jpg"></a>
+            {% endif %}
+
+            <!-- Hareru Profil when live-->
+            {% if channel.channelid == "UCyIcOCH-VWaRKH9IkR8hz7Q" %}
+                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Hareru Hanamaru.jpg"></a>
+            {% else %}
+                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Hareru Hanamaru.jpg"></a>
+            {% endif %}
+            
+            <!-- Nonono Profil when live-->
+            {% if channel.channelid == "UCiexEBp7-D46FXUtQ-BpgWg" %}
+                <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/profile_live/Nonono Nonomiya.jpg"></a>
+            {% else %}    
+                <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Nonono Nonomiya.jpg"></a>
+            {% endif %}
+        </div>
+            <div class="menu">
+                <p><a href="/">Home</a></p>
+                <p><a href="/Live">Live</a> </p>
+                <p><a href="/Upcome">Upcoming</a> </p>
+                <p><a href="/Last">Last</a></p>
+            </div>
+            <div class="menu__toggler"><span></span></div>
+            <div class=main>
+                {% if status.status == "upcoming" %}
+                    <h3>{{ status.status }} Start at {{ live.time }} JST</h3>
+                    <img src="https://img.youtube.com/vi/{{ video.videoid }}/maxresdefault.jpg" alt="" height="230" width="400">
+                {% else %}
+                    <h3>It seems like there is no livestream for now</h3>
+                    <img src="static/img/asset/parerunworry.png" alt="">
+                {% endif %}
+            </div>
+    </body>
+    <script>
+        const toggler = document.querySelector(".menu__toggler");
+        const menu = document.querySelector(".menu");
+        const profile = document.querySelector(".profile");
+
+        toggler.addEventListener("click", () => {
+        toggler.classList.toggle("active");
+        menu.classList.toggle("active");
+        });
+    </script>
+</html>

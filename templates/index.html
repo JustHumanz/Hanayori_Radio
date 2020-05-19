@@ -1,0 +1,49 @@
+<html>
+    <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="icon" href="static/img/icon.png" type="image/icon type">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/sidenav.css">
+    <link rel="stylesheet" href="static/css/plyr.css">
+    <link rel="stylesheet" href="static/css/switch.css">
+        <title>
+            Hanayori Radio
+        </title>
+    </head>
+    <body>
+            <div class="profile">
+                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Kano.jpg"></a>
+                <a class="Hitona" href="https://www.youtube.com/channel/UCV2m2UifDGr3ebjSnDv5rUA?sub_confirmation=1" target="_blank"><img src="static/img/Hitona Kohigashi.jpg"></a>
+                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Hareru Hanamaru.jpg"></a>
+                <a class="Nonono" href="https://www.youtube.com/channel/UCiexEBp7-D46FXUtQ-BpgWg?sub_confirmation=1" target="_blank"><img src="static/img/Nonono Nonomiya.jpg"></a>
+            </div>
+            <div class="menu">
+                <p><a href="/">Home</a></p>
+                <p><a href="/Live">Live</a> </p>
+                <p><a href="/Upcome">Upcoming</a> </p>
+                <p><a href="/Last">Last</a></p>
+            </div>
+            <div class="menu__toggler"><span></span></div>
+            <div class=main>
+                <h3>¯\_(ツ)_/¯</h3>
+            </div>  
+            <div style="position: relative; top: -4%; text-align: center; display: block;">
+                <label class="switch">
+                    <input type="checkbox">
+                    <div class="slider"></div>
+                </label>
+            </div>
+            <div id="st" style="position: relative; text-align: center;"></div>
+            <div class="music" id="mu">
+                <audio id="player" controls loop>
+                    <source src="https://radio.justhumanz.me/stream" type="audio/mp3" />
+                </audio>
+            </div>
+            <div id="snackbar">YouTube mode</div>
+            <div id="snackbar2">Radio mode</div>          
+    </body>
+    <script src="static/js/plyr.min.js"></script>
+    <script src="static/js/plyr.polyfilled.min.js"></script>
+    <script src="static/js/utility.js"></script>
+</html>

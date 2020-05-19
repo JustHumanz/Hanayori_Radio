@@ -4,8 +4,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    height: 115%; 
+    background-position: center;
 }
-
 
 @keyframes slideInFromLeft {
   0% {
@@ -19,9 +20,10 @@ body {
 .profile {
   animation: 1s ease-out 0s 1 slideInFromLeft;
   background: #33333380;
-  padding: 5px;
+  padding: 7px;
   position: relative;
   text-align: center;
+  height: 10%;
 }
 
 .kano img{
@@ -39,7 +41,7 @@ body {
  -webkit-transform: scale(1.1);   
  }
 
- .Hitona img{
+.Hitona img{
   border-radius: 50%;
   width: 4%;
   cursor: pointer;
@@ -84,27 +86,31 @@ body {
  -webkit-transform: scale(1.1);
 }
 
-.music {
-  margin-top: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center
-    
-}
-
-.Main {
+.main {
   height: 10em;
-  position: relative 
+  text-align: center;
 }
 
-.Main h3 {
-  color: whitesmoke;
+.main h3 {
+  margin-top: 5%;
+  margin-bottom: 1%;
+  color: white;
   font-size: 30;
   font-family: 'Ubuntu Mono', monospace;
-  margin: 0;
-  position: absolute;
-  top: 130%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%) 
+  position: relative;
+}
+
+.music {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music.show {
+  position: relative;
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
