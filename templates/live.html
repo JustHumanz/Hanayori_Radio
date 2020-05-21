@@ -52,9 +52,19 @@
                 <ul>
                 {% for result in data %}
                     {% if data[loop.index0]['Data']['status'] == "live" %}
+                        {% if status[1]['live_count'] > 1 %}
+                        <li>
+                            {% if loop.index == status[1]['live_count'] %}
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ data[loop.index0]['Data']['ytVideoId'] }}?rel=0&amp;autoplay=1;mute=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% else %}
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ data[loop.index0]['Data']['ytVideoId'] }}?rel=0&amp;autoplay=1;mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% endif %}
+                        </li>
+                        {% else %}
                         <li>
                             <a href="/Live/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
                         </li>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 </ul>
@@ -72,6 +82,7 @@
         menu.classList.toggle("active");
         });
     </script>
+    <script src="https://static.doubleclick.net/instream/ad_status.js"></script>
         <script src="{{ url_for('static', filename='js/plyr.polyfilled.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>>
         <script src="{{ url_for('static', filename='js/utility.js') }}"></script>
