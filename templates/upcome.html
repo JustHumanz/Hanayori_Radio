@@ -3,10 +3,10 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <link rel="icon" href="/static/img/icon.png" type="image/icon type">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/sidenav.css">
-    <link rel="stylesheet" href="/static/css/plyr.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}"  type="image/icon type">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidenav.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/plyr.css') }}"> 
         <title>
             {{ title }}
         </title>

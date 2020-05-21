@@ -2,9 +2,9 @@
     <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <link rel="icon" href="/static/img/icon.png" type="image/icon type">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/sidenav.css">
+    <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}"  type="image/icon type">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidenav.css') }}">
         <title>
             {{ title }}
         </title>
@@ -72,4 +72,7 @@
         menu.classList.toggle("active");
         });
     </script>
+        <script src="{{ url_for('static', filename='js/plyr.polyfilled.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>>
+        <script src="{{ url_for('static', filename='js/utility.js') }}"></script>
 </html>
