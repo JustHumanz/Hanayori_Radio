@@ -50,10 +50,10 @@
                 <img src="/static/img/asset/parerunworry.png" alt="">
             {% else %}
                 <ul>
-                {% for result in data %}
-                    {% if data[loop.index0]['Data']['status'] == "live" %}
+                {% for result in range(5) %}
+                    {% if data[loop.index0]['Data']['status'] == "past" %}
                         <li>
-                            <a href="/Live/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
+                            <a href="/Live_id/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
                         </li>
                     {% endif %}
                 {% endfor %}

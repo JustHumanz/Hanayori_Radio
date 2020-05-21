@@ -5,6 +5,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 data_up = ""
 data_now = ""
 data_last = ""
+live_status=[{"Kano":False,"Hitona":False,"Hareru":False,"Nonono":False}]
+
 
 def curlup():
     global data_up
@@ -36,20 +38,36 @@ def curllast():
     else:
         data_last = values
 
-
-app = Flask(__name__)
-
-#2020-05-16 18:32:05-04:00
-@app.before_request
-def before_request_func():
+def boot():
     curlup()
     curlnow()
     curllast()
     sched = BackgroundScheduler(daemon=True)
-    sched.add_job(curlup,'interval',minutes=10)
-    sched.add_job(curlnow,'interval',minutes=50)
+    sched.add_job(curlup,'interval',hours=1)
+    sched.add_job(curlnow,'interval',minutes=30)
     sched.add_job(curllast,'interval',hours=1)
     sched.start()
+
+boot()
+
+
+data_null = [{"Data":{"description":"foo","durationSecs":"None","embeddable":'true',"lateSecs":0,"liveChat":"foo","liveEnd":"bar","liveSchedule":"foo","liveStart":"bar","liveViewers":"foo","publishedAt":"foo","status":"bar","thumbnail":"foo","title":"foo","ytChannelId":"bar","ytVideoId":"foo"}}]
+
+if data_now == "null":
+    data_now = data_null
+else:
+    for i in range(len(data_now)):
+        if data_now[i]['Data']['ytChannelId'] == "UCfuz6xYbYFGsWWBi3SpJI1w" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Kano"] = True
+        elif data_now[i]['Data']['ytChannelId'] == "UCV2m2UifDGr3ebjSnDv5rUA" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Hitona"] = True
+        elif data_now[i]['Data']['ytChannelId'] == "UCyIcOCH-VWaRKH9IkR8hz7Q" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Hareru"] = True
+        elif data_now[i]['Data']['ytChannelId'] == "UCiexEBp7-D46FXUtQ-BpgWg" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Nonono"] = True
+
+
+app = Flask(__name__)
 
 @app.route('/')
 def main(name=None):
@@ -58,29 +76,22 @@ def main(name=None):
 @app.route('/Upcome')
 def up():
     if data_up == "null":
-        status = {'status': 'foo'}
-        channel = {'channelid' : 'bar'}
-        return render_template('upcome.html', title='Upcoming', status=status,channel=channel)
-
+        return render_template('upcome.html',title='Upcoming',data=data_null,status=live_status)
     else:
-        status = {'status': data_up[0]['Data']['status']}
-        live = dateutil.parser.parse(data_up[0]['Data']['liveSchedule'])
-        jst = {'time': live.astimezone(pytz.timezone("Asia/Tokyo"))}
-        video = {'videoid' : data_up[0]['Data']['ytVideoId']}
-        channel = {'channelid' : data_up[0]['Data']['ytChannelId']}
-        return render_template('upcome.html', title='Upcoming', status=status,live=jst,video=video,channel=channel)
-
+        return render_template('upcome.html',title='Upcoming',data=data_up,status=live_status)
 
 @app.route('/Live')
 def live():
     if data_now == "null":
-        status = {'status': 'null'}
-        channel = {'channelid' : 'bar'}
-        return render_template('live.html', title='Live', status=status,channel=channel)
-
+        return render_template('upcome.html',title='Upcoming',data=data_null,status=live_status)
     else:
-        status = {'status': data_now[0]['Data']['status']}
-        title_video = {'title': data_now[0]['Data']['title']}
-        channel = {'channelid' : data_now[0]['Data']['ytChannelId']}
-        video = {'videoid' : data_now[0]['Data']['ytVideoId']}
-        return render_template('live.html', title='Live', title_video=title_video,channel=channel,video=video,status=status)
+        return render_template('live.html',title='Live',data=data_now,status=live_status)
+
+@app.route('/Live/<ytid>')
+def live_id(ytid=None):
+    return render_template('live_id.html',title='Live',data=data_now,ytid=ytid,status=live_status)
+
+
+@app.route('/Last')
+def last():
+    return render_template('last.html',title="Last live",data=data_last,status=live_status)
