@@ -20,7 +20,7 @@ else:
             live_status[1]["live_count"] += 1
 
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 
 @app.route('/')
 def main(name=None):
