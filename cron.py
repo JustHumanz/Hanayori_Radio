@@ -50,5 +50,24 @@ def boot():
     sched.start()
 boot()
 
-
 data_null = [{"Data":{"description":"foo","durationSecs":"None","embeddable":'true',"lateSecs":0,"liveChat":"foo","liveEnd":"bar","liveSchedule":"foo","liveStart":"bar","liveViewers":"foo","publishedAt":"foo","status":"bar","thumbnail":"foo","title":"foo","ytChannelId":"bar","ytVideoId":"foo"}}]
+
+if data_now == "null":
+    data_now = data_null
+else:
+    for i in range(len(data_now)):
+        if data_now[i]['Data']['ytChannelId'] == "UCfuz6xYbYFGsWWBi3SpJI1w" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Kano"] = True
+            live_status[1]["live_count"] += 1
+        elif data_now[i]['Data']['ytChannelId'] == "UCV2m2UifDGr3ebjSnDv5rUA" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Hitona"] = True
+            live_status[1]["live_count"] += 1
+        elif data_now[i]['Data']['ytChannelId'] == "UCyIcOCH-VWaRKH9IkR8hz7Q" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Hareru"] = True
+            live_status[1]["live_count"] += 1
+        elif data_now[i]['Data']['ytChannelId'] == "UCiexEBp7-D46FXUtQ-BpgWg" and data_now[i]['Data']['status'] == 'live':
+            live_status[0]["Nonono"] = True
+            live_status[1]["live_count"] += 1
+
+
+
