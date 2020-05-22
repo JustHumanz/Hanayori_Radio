@@ -20,31 +20,31 @@ else:
             live_status[1]["live_count"] += 1
 
 
-app = Flask(__name__,static_url_path='/static')
+hanayori = Flask(__name__,static_url_path='/static')
 
-@app.route('/')
+@hanayori.route('/')
 def main(name=None):
     return render_template('index.html', name=name)
 
-@app.route('/Upcome')
+@hanayori.route('/Upcome')
 def up():
     if data_up == "null":
         return render_template('upcome.html',title='Upcoming',data=data_null,status=live_status)
     else:
         return render_template('upcome.html',title='Upcoming',data=data_up,status=live_status)
 
-@app.route('/Live')
+@hanayori.route('/Live')
 def live():
     if data_now == "null":
         return render_template('upcome.html',title='Upcoming',data=data_null,status=live_status)
     else:
         return render_template('live.html',title='Live',data=data_now,status=live_status)
 
-@app.route('/Live/<ytid>')
+@hanayori.route('/Live/<ytid>')
 def live_id(ytid=None):
     return render_template('live_id.html',title='Live',data=data_now,ytid=ytid,status=live_status)
 
 
-@app.route('/Last')
+@hanayori.route('/Last')
 def last():
     return render_template('last.html',title="Last live",data=data_last,status=live_status)
