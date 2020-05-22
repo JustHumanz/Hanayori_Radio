@@ -53,7 +53,7 @@
                 {% for result in data %}
                     {% if data[loop.index0]['Data']['status'] == "past" %}
                         <li>
-                            <a href="/Live/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
+                            <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
                         </li>
                     {% endif %}
                 {% endfor %}

@@ -1,13 +1,18 @@
 from flask import Flask,json,render_template
 import json,dateutil.parser,time
 from apscheduler.schedulers.background import BackgroundScheduler
-from auth import *
+from auth import urllib
 
 data_up = ""
 data_now = ""
 data_last = ""
-live_status=[{"Kano":False,"Hitona":False,"Hareru":False,"Nonono":False},{"live_count":0}]
+live_status=[{"Kano":False,
+            "Hitona":False,
+            "Hareru":False,
+            "Nonono":False},
+            {"live_count":0}]
 
+data_null = [{"Data":{"description":"foo","durationSecs":"None","embeddable":'true',"lateSecs":0,"liveChat":"foo","liveEnd":"bar","liveSchedule":"foo","liveStart":"bar","liveViewers":"foo","publishedAt":"foo","status":"bar","thumbnail":"foo","title":"foo","ytChannelId":"bar","ytVideoId":"foo"}}]
 
 def curlup():
     global data_up
@@ -44,13 +49,12 @@ def boot():
     curlnow()
     curllast()
     sched = BackgroundScheduler(daemon=True)
-    sched.add_job(curlup,'interval',hours=1)
-    sched.add_job(curlnow,'interval',minutes=30)
-    sched.add_job(curllast,'interval',hours=1)
+    sched.add_job(curlup,'interval',minutes=35)
+    sched.add_job(curlnow,'interval',minutes=10)
+    sched.add_job(curllast,'interval',minutes=30)
     sched.start()
-boot()
 
-data_null = [{"Data":{"description":"foo","durationSecs":"None","embeddable":'true',"lateSecs":0,"liveChat":"foo","liveEnd":"bar","liveSchedule":"foo","liveStart":"bar","liveViewers":"foo","publishedAt":"foo","status":"bar","thumbnail":"foo","title":"foo","ytChannelId":"bar","ytVideoId":"foo"}}]
+boot()
 
 if data_now == "null":
     data_now = data_null
