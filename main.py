@@ -3,7 +3,7 @@ import json,pytz,dateutil.parser,time
 from werkzeug.middleware.proxy_fix import ProxyFix
 from cron import *
 
-hanayori = Flask(__name__)
+hanayori = Flask(__name__,static_url_path='/static')
 hanayori.wsgi_app = ProxyFix(hanayori.wsgi_app)
 
 
