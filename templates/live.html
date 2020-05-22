@@ -45,8 +45,8 @@
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-            {% if data[0]['Data']['description'] == "foo"%}
-                <h3>It seems like there is no livestream for now</h3>
+            {% if data[0]['null'] == True%}
+                <h3> {{ data[0]['message'] }} </h3>
                 <img src="/static/img/asset/parerunworry.png" alt="">
             {% else %}
                 <ul>

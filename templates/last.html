@@ -45,20 +45,15 @@
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-            {% if data[0]['Data']['description'] == "foo"%}
-                <h3>It seems like there is no livestream for now</h3>
-                <img src="/static/img/asset/parerunworry.png" alt="">
-            {% else %}
                 <ul>
-                {% for result in data %}
-                    {% if data[loop.index0]['Data']['status'] == "past" %}
-                        <li>
-                            <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            {% endif %}
+                    {% for result in data %}
+                        {% if data[loop.index0]['Data']['status'] == "past" %}
+                            <li>
+                                <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}"><img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt=""></a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
             </div>
 
     </body>
@@ -73,6 +68,6 @@
         });
     </script>
         <script src="{{ url_for('static', filename='js/plyr.polyfilled.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>>
+        <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/utility.js') }}"></script>
 </html>

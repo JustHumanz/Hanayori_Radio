@@ -12,15 +12,13 @@ live_status=[{"Kano":False,
             "Nonono":False},
             {"live_count":0}]
 
-data_null = [{"Data":{"description":"foo","durationSecs":"None","embeddable":'true',"lateSecs":0,"liveChat":"foo","liveEnd":"bar","liveSchedule":"foo","liveStart":"bar","liveViewers":"foo","publishedAt":"foo","status":"bar","thumbnail":"foo","title":"foo","ytChannelId":"bar","ytVideoId":"foo"}}]
-
 def curlup():
     global data_up
     req = urllib.request.Request('https://api.justhumanz.me/hanayori/live/upcoming')
     response = urllib.request.urlopen(req)
     values = json.loads(response.read())
     if values is None:
-        data_up = "null"
+        data_up = [{"message": "Look like no scheduled live stream for now","null": True}]
     else:
         data_up = values
 
@@ -30,7 +28,7 @@ def curlnow():
     response = urllib.request.urlopen(req)
     values = json.loads(response.read())
     if values is None:
-        data_now = "null"
+        data_now = [{"message": "Look like no live stream for now","null": True}]
     else:
         data_now = values
 
@@ -39,10 +37,7 @@ def curllast():
     req = urllib.request.Request('https://api.justhumanz.me/hanayori/live/last')
     response = urllib.request.urlopen(req)
     values = json.loads(response.read())
-    if values is None:
-        data_last = "null"
-    else:
-        data_last = values
+    data_last = values
 
 def boot():
     curlup()
@@ -56,8 +51,8 @@ def boot():
 
 boot()
 
-if data_now == "null":
-    data_now = data_null
+if data_now[0]["null"] == True:
+    pass
 else:
     for i in range(len(data_now)):
         if data_now[i]['Data']['ytChannelId'] == "UCfuz6xYbYFGsWWBi3SpJI1w" and data_now[i]['Data']['status'] == 'live':
