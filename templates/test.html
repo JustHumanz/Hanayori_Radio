@@ -1,0 +1,11 @@
+<html>
+{% for result in status %}
+    {%for name in result %}
+        {% if status[0][name] == True %}
+            {{ name }}            
+        {% else %}
+            BB
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</html>

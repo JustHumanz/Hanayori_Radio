@@ -53,7 +53,7 @@
                             {% elif data[loop.index0]['Data']['status'] == "live" %}
                                 <li>
                                     <div class="infotime">
-                                        <a href="https://www.youtube.com/watch?v={{ data[loop.index0]['Data']['ytVideoId'] }}">
+                                        <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}">
                                             <img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt="">
                                             <div class="time">
                                                 <h3>Live now</h3>

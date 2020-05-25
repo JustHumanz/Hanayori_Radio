@@ -14,14 +14,18 @@ def curlup():
     req = urllib.request.Request('https://api.justhumanz.me/hanayori/live/upcoming')
     response = urllib.request.urlopen(req)
     data_up = json.loads(response.read())
+    data_now = curlnow()
 
-    if data_up is None:
+    if data_up is None and data_now is None:
         return([{"message": "Look like no scheduled live stream for now","null": True}])
+
+    elif data_up == None and data_now != None:
+        return(data_now)
+
     else:
         for i in range(len(data_up)):
             tmp = data_up[i]["Data"]["liveSchedule"]
             data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
-
         return(data_up)
 
 def curlnow():
@@ -54,18 +58,18 @@ def live_status():
     "Nonono":False}]
     data_now = curlnow()
 
-    if data_now[0]['null'] == False :
+    if data_now[0] != None :
         for i in range(len(data_now)):
-            if data_now[i]['Data']['ytChannelId'] == channelid[i] and data_now[i]['Data']['status'] == 'live':
+            if data_now[i]['Data']['ytChannelId'] == channelid[0] and data_now[i]['Data']['status'] == 'live':
                 live_member[0]["Kano"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[i] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['Data']['ytChannelId'] == channelid[1] and data_now[i]['Data']['status'] == 'live':
                 live_member[0]["Hitona"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[i] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['Data']['ytChannelId'] == channelid[2] and data_now[i]['Data']['status'] == 'live':
                 live_member[0]["Hareru"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[i] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['Data']['ytChannelId'] == channelid[3] and data_now[i]['Data']['status'] == 'live':
                 live_member[0]["Nonono"] = True
                 live_count += 1
                 
