@@ -5,47 +5,32 @@
     <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}"  type="image/icon type">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sidenav.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>
             {{ title }}
         </title>
     </head>
     <body>
         <div class="profile">
-            <!-- Kano Profil when live-->
-            {% if status[0]['Kano'] == True %}
-                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/Kano.jpg"></a>
-            {% else %}
-                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="/static/img/Kano.jpg"></a>
-            {% endif %}
-
-            <!-- Hitona Profil when live-->
-            {% if status[0]['Hitona'] == True %}                    
-                <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/Hitona Kohigashi.jpg"></a>
-            {% else %}
-                <a class="Hitona" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="/static/img/Hitona Kohigashi.jpg"></a>
-            {% endif %}
-            <!-- Hareru Profil when live-->
-            {% if status[0]['Hareru'] == True %}
-                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/Hareru Hanamaru.jpg"></a>
-            {% else %}
-                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="/static/img/Hareru Hanamaru.jpg"></a>
-            {% endif %}
-            <!-- Nonono Profil when live-->
-            {% if status[0]['Nonono'] == True %}
-                <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/Nonono Nonomiya.jpg"></a>
-            {% else %}    
-                <a class="Nonono" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="/static/img/Nonono Nonomiya.jpg"></a>
-            {% endif %}
+            {% for result in status %}
+                {%for name in result %}
+                    {% if status[0][name] == True %}
+                        <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/{{ name }}.jpg"></a>
+                    {% else %}
+                        <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/{{ name }}.jpg"></a>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
         </div>
             <div class="menu">
-                <p><a href="/">Home</a></p>
-                <p><a href="/Live">Live</a> </p>
-                <p><a href="/Upcome">Upcoming</a> </p>
-                <p><a href="/Last">Last</a></p>
+                <p><a class="home"href="/"><i class="large material-icons">home</i></a></p>
+                <p><a class="live" href="/Live"><i class="large material-icons">live_tv</i></a></p>
+                <p><a class="upcome" href="/Upcome"><i class="large material-icons">queue_play_next</i></a></p>
+                <p><a class="last" href="/Last"><i class="large material-icons">list</i></a></p>
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ ytid }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="top: 50%;position: relative;"></iframe>
+                <iframe width="853" height="505" src="https://www.youtube.com/embed/{{ ytid }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="top: 50%;position: relative;"></iframe>
             </div>
 
     </body>

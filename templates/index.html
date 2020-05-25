@@ -8,22 +8,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sidenav.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plyr.css') }}"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/switch.css') }}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>
-            Hanayori Radio
+            Hanayori Tools
         </title>
     </head>
     <body>
-            <div class="profile">
-                <a class="Kano" href="https://www.youtube.com/channel/UCfuz6xYbYFGsWWBi3SpJI1w?sub_confirmation=1" target="_blank"><img src="static/img/Kano.jpg"></a>
-                <a class="Hitona" href="https://www.youtube.com/channel/UCV2m2UifDGr3ebjSnDv5rUA?sub_confirmation=1" target="_blank"><img src="static/img/Hitona Kohigashi.jpg"></a>
-                <a class="Hareru" href="https://www.youtube.com/channel/UCyIcOCH-VWaRKH9IkR8hz7Q?sub_confirmation=1" target="_blank"><img src="static/img/Hareru Hanamaru.jpg"></a>
-                <a class="Nonono" href="https://www.youtube.com/channel/UCiexEBp7-D46FXUtQ-BpgWg?sub_confirmation=1" target="_blank"><img src="static/img/Nonono Nonomiya.jpg"></a>
-            </div>
+        <div class="profile">
+            {% for result in status %}
+                {%for name in result %}
+                    {% if status[0][name] == True %}
+                        <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/{{ name }}.jpg"></a>
+                    {% else %}
+                        <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/{{ name }}.jpg"></a>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
             <div class="menu">
-                <p><a href="/">Home</a></p>
-                <p><a href="/Live">Live</a> </p>
-                <p><a href="/Upcome">Upcoming</a> </p>
-                <p><a href="/Last">Last</a></p>
+                <p><a class="home"href="/"><i class="large material-icons">home</i></a></p>
+                <p><a class="live" href="/Live"><i class="large material-icons">live_tv</i></a></p>
+                <p><a class="upcome" href="/Upcome"><i class="large material-icons">queue_play_next</i></a></p>
+                <p><a class="last" href="/Last"><i class="large material-icons">list</i></a></p>
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
