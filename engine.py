@@ -19,13 +19,17 @@ def curlup():
     if data_up is None and data_now is None:
         return(data_up)
 
-    elif data_up == None and data_now != None:
+    elif data_up is None and data_now != None:
         return(data_now)
 
     else:
         for i in range(len(data_up)):
             tmp = data_up[i]["Data"]["liveSchedule"]
             data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
+        
+        for ii in range(len(data_now)): 
+            data_up.append(data_now[ii])
+
         return(data_up)
 
 def curlnow():
