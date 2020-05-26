@@ -17,7 +17,7 @@ def curlup():
     data_now = curlnow()
 
     if data_up is None and data_now is None:
-        return([{"message": "Look like no scheduled live stream for now","null": True}])
+        return(data_up)
 
     elif data_up == None and data_now != None:
         return(data_now)
@@ -33,7 +33,7 @@ def curlnow():
     response = urllib.request.urlopen(req)
     data_now = json.loads(response.read())
     if data_now is None:
-        return([{"message": "Look like no live stream for now","null": True}])
+        return(data_now)
     else:                
         return (data_now)
 
@@ -57,8 +57,7 @@ def live_status():
     "Hareru":False,
     "Nonono":False}]
     data_now = curlnow()
-
-    if data_now[0] != None :
+    if data_now != None :
         for i in range(len(data_now)):
             if data_now[i]['Data']['ytChannelId'] == channelid[0] and data_now[i]['Data']['status'] == 'live':
                 live_member[0]["Kano"] = True

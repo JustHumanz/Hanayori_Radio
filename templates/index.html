@@ -16,7 +16,7 @@
     <body>
         <div class="profile">
             {% for result in status %}
-                {%for name,p in result.items() %}
+                {%for name in result %}
                     {% if status[0][name] == True %}
                         <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/{{ name }}.jpg"></a>
                     {% else %}

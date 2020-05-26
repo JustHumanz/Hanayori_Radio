@@ -33,8 +33,8 @@
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-                {% if data[0]['null'] == True %}
-                    <h3>{{ data[0]['message'] }}</h3>
+                {% if data is none %}
+                    <h3>Look like no scheduled live stream for now</h3>
                     <img src="/static/img/asset/parerunworry.png" alt="">
                 {% else %}
                     <ul>

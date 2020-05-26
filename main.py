@@ -4,7 +4,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from engine import curlup,curlnow,curlnow
 import engine
 
-live_member,live_count = engine.live_status()
+live_member = ""
+live_count = ""
 
 
 hanayori = Flask(__name__,static_url_path='/static')
@@ -21,6 +22,8 @@ def up():
 
 @hanayori.route('/Live')
 def live():
+    global live_count,live_member
+    live_member,live_count = engine.live_status()
     return render_template('live.html',title='Live',data=engine.curlnow(),status=live_member,live_count=live_count,cnid=engine.channelid)
 
 @hanayori.route('/Video/<ytid>')
