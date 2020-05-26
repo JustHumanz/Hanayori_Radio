@@ -16,15 +16,18 @@ def curlup():
     data_up = json.loads(response.read())
     data_now = curlnow()
 
-    if data_up is None and data_now is None:
+    if data_up is None and data_now is None:            
         return(data_up)
 
     elif data_up is None and data_now != None:
         return(data_now)
 
     elif data_up != None and data_now == None:
-        return(data_now)
-        
+        for i in range(len(data_up)):
+            tmp = data_up[i]["Data"]["liveSchedule"]
+            data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
+        return(data_up)
+
     else:
         for i in range(len(data_up)):
             tmp = data_up[i]["Data"]["liveSchedule"]
