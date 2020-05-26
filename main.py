@@ -5,7 +5,7 @@ from engine import curlup,curlnow,curlnow
 import engine
 
 live_member = ""
-live_count = ""
+live_count = 0
 
 
 hanayori = Flask(__name__,static_url_path='/static')
