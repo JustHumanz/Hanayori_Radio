@@ -14,6 +14,8 @@ hanayori.wsgi_app = ProxyFix(hanayori.wsgi_app)
 
 @hanayori.route('/')
 def main():
+    global live_count,live_member
+    live_member,live_count = engine.live_status()
     return render_template('index.html',status=live_member,cnid=engine.channelid)
 
 @hanayori.route('/Upcome')
@@ -22,8 +24,6 @@ def up():
 
 @hanayori.route('/Live')
 def live():
-    global live_count,live_member
-    live_member,live_count = engine.live_status()
     return render_template('live.html',title='Live',data=engine.curlnow(),status=live_member,live_count=live_count,cnid=engine.channelid)
 
 @hanayori.route('/Video/<ytid>')
