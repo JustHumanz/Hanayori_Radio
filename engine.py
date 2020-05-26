@@ -22,6 +22,9 @@ def curlup():
     elif data_up is None and data_now != None:
         return(data_now)
 
+    elif data_up != None and data_now == None:
+        return(data_now)
+        
     else:
         for i in range(len(data_up)):
             tmp = data_up[i]["Data"]["liveSchedule"]
