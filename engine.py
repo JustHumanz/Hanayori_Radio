@@ -52,8 +52,9 @@ def curllast():
     response = urllib.request.urlopen(req)
     data_last = json.loads(response.read())
     for i in range(len(data_last)):
-        tmp = data_last[i]["Data"]["liveSchedule"]
-        data_last[i]["Data"]["liveSchedule"] = timejst(tmp,"%Y-%m-%d %H:%M")
+        tmp = data_last[i]["Data"]["publishedAt"]
+        data_last[i]["Data"]["publishedAt"] = timejst(tmp,"%Y-%m-%d %H:%M")
+    
     return(data_last)
 
 
