@@ -5,6 +5,7 @@ from auth import urllib
 channelid = ""
 
 
+#change iso 8601 to localtime
 def timejst(value,format_time):
     utctime = dateutil.parser.parse(value)
     localtime = utctime.astimezone(pytz.timezone("Asia/Tokyo"))
@@ -58,9 +59,10 @@ def curllast():
     return(data_last)
 
 
-
+#checking who's live right now
 def live_status():
     global channelid
+    #tbh i'm not sure with double list
     channelid=["UCfuz6xYbYFGsWWBi3SpJI1w","UCV2m2UifDGr3ebjSnDv5rUA","UCyIcOCH-VWaRKH9IkR8hz7Q","UCiexEBp7-D46FXUtQ-BpgWg"]
     live_count = 0
     live_member=[{"Kano":False,

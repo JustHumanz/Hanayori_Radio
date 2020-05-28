@@ -1,9 +1,10 @@
 from flask import Flask,json,render_template
-import json,pytz,dateutil.parser,time,logging
+import json,pytz,dateutil.parser,time
 from werkzeug.middleware.proxy_fix import ProxyFix
 from engine import curlup,curlnow,curlnow
 import engine
 
+#live member variable for temporary
 live_member = ""
 live_count = 0
 
@@ -16,6 +17,7 @@ hanayori.wsgi_app = ProxyFix(hanayori.wsgi_app)
 def main():
     global live_count
     global live_member
+    #take data from live_status func in engine.py 
     live_member,live_count = engine.live_status()
     return render_template('index.html',status=live_member,cnid=engine.channelid)
 
