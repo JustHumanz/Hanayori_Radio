@@ -1,7 +1,7 @@
+//Engine
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"log"
 
@@ -9,6 +9,7 @@ import (
 	"google.golang.org/api/iterator"
 )
 
+//struct for convert map to json
 type VtubeData struct {
 	Data map[string]interface{} `json:"Data"`
 }
@@ -20,8 +21,12 @@ func exec(iter *firestore.DocumentIterator) string {
 		if err == iterator.Done {
 			break
 		}
+		if err != nil {
+			log.Fatal(err)
+		}
 		tmp = append(tmp, VtubeData{Data: doc.Data()})
 	}
+
 	jso, err := json.Marshal(tmp)
 	if err != nil {
 		log.Fatal(err)
@@ -29,23 +34,7 @@ func exec(iter *firestore.DocumentIterator) string {
 	return (string(jso))
 }
 
-//get live data
-func live(client *firestore.Client, ctx context.Context) string {
-	q := client.Collection("video").Where("status", "==", "live").Where("liveViewers", ">", "").OrderBy("liveViewers", firestore.Desc).OrderBy("publishedAt", firestore.Desc).Documents(ctx)
-	fix := exec(q)
-	return (fix)
-}
-
-//get upcome data
-func upcome(client *firestore.Client, ctx context.Context) string {
-	q := client.Collection("video").Where("status", "in", []string{"live", "upcoming"}).Where("liveViewers", "==", nil).OrderBy("publishedAt", firestore.Desc).Documents(ctx)
-	fix := exec(q)
-	return (fix)
-}
-
-//get last stream data
-func last(client *firestore.Client, ctx context.Context) string {
-	q := client.Collection("video").Where("status", "in", []string{"past", "uploaded"}).OrderBy("publishedAt", firestore.Desc).Documents(ctx)
+func query(client *firestore.Client, q *firestore.DocumentIterator) string {
 	fix := exec(q)
 	return (fix)
 }
