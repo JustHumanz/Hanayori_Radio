@@ -24,7 +24,7 @@ Soon
 
 
 ## Contribute
-well you can give any suggestion especially front end,i'm suck with front end and if you see something worng with my backend code pls fix that
+well you can give any suggestion especially front end,cuz i'm suck with front end and if you see something worng with my backend code pls fix that
 <details>
 <summary>From dev</summary>
 you have nice concept but don't know to use github,you can send it to my email Aldinsetiawan99@Gmail.com and if you want to make tools like this but don't have any resource you can PM me,maybe i can help it 
