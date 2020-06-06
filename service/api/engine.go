@@ -49,7 +49,7 @@ func tw(tag string, limit string) string {
 		log.Panic(err)
 	}
 
-	for tweet := range twitterscraper.SearchTweets(tag, count+1) {
+	for tweet := range twitterscraper.SearchTweets(tag, count) {
 		if tweet.Error != nil {
 			panic(tweet.Error)
 		}
