@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	"cloud.google.com/go/firestore"
-	twitterscraper "github.com/n0madic/twitter-scraper"
+	twitterscraper "github.com/JustHumanz/twitter-scraper"
 	"google.golang.org/api/iterator"
 )
 

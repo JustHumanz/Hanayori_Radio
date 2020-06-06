@@ -91,7 +91,7 @@ func main() {
 	r.HandleFunc("/twitter/{member}", twitter)
 
 	// Bind to a port and pass our router in
-	log.Print(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
 func twitter(w http.ResponseWriter, r *http.Request) {
