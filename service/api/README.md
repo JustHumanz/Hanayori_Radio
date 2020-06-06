@@ -1,5 +1,6 @@
 ## Hanayori API
 
+#### youtube_crawler
 https://api.justhumanz.me/hanayori/live/{parameters}
 
 if Authentication request  
@@ -13,6 +14,18 @@ This api just have 3 parameters
 [last](https://api.justhumanz.me/hanayori/live/last) show all hanayori schedule live in past
 
 and for [last](https://api.justhumanz.me/hanayori/live/last) parameters you can filter with member name,like [kano](https://api.justhumanz.me/hanayori/live/last/kano) or [parerun](https://api.justhumanz.me/hanayori/live/last/parerun)
+
+#### twitter scraper
+https://api.justhumanz.me/hanayori/twitter/{member}/{limit}  
+
+this api will scraper all tweet hashtag hanayori member fanart (#鹿乃art,#ひとなーと,#はなまるお絵かき,#ののののえ)
+
+### how to use
+the parameter just hanayori member name and limitation,by default the limitation is 10 tweet  
+
+##### example
+```https://api.justhumanz.me/hanayori/twitter/kano```  just 10 tweet  
+```https://api.justhumanz.me/hanayori/twitter/kano/100``` 100 tweet will appear
 
 ### deployment
 For dependency you need firestore and mux
