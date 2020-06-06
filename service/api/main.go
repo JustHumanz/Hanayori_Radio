@@ -87,7 +87,34 @@ func main() {
 		now := query(client, q)
 		io.WriteString(w, now)
 	})
+	r.HandleFunc("/twitter/{member}/{limit:[0-9]+}", twitter)
+	r.HandleFunc("/twitter/{member}", twitter)
 
 	// Bind to a port and pass our router in
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Print(http.ListenAndServe(":8000", r))
+}
+
+func twitter(w http.ResponseWriter, r *http.Request) {
+	var last string
+	vars := mux.Vars(r)
+	member := strings.ToLower(vars["member"])
+	limit := vars["limit"]
+	if limit == "" {
+		limit = "10"
+	}
+	//query in firestore
+	if member == "kano" {
+		last = tw("#鹿乃art", limit)
+	} else if member == "hitona" {
+		last = tw("#ひとなーと", limit)
+	} else if member == "hareru" || member == "parerun" {
+		last = tw("#はなまるお絵かき", limit)
+	} else if member == "nonono" {
+		last = tw("#ののののえ", limit)
+	} else {
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	io.WriteString(w, last)
 }
