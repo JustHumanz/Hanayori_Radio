@@ -111,6 +111,8 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 		last = tw("#はなまるお絵かき", limit)
 	} else if member == "nonono" {
 		last = tw("#ののののえ", limit)
+	} else if member == "all" {
+		last = tw("#鹿乃art #ひとなーと #はなまるお絵かき #ののののえ", limit)
 	} else {
 		return
 	}

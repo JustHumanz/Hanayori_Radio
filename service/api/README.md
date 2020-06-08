@@ -21,7 +21,8 @@ https://api.justhumanz.me/hanayori/twitter/{member}/{limit}
 this api will scraper all tweet with hashtag hanayori member fanart (#鹿乃art,#ひとなーと,#はなまるお絵かき,#ののののえ)
 
 #### how to use
-the parameter just hanayori member name and limitation,by default the limitation is 10 tweet  
+the parameter just hanayori member name and limitation,by default the limitation is 10 tweet   
+*update* add all parameter
 
 ##### example
 ```https://api.justhumanz.me/hanayori/twitter/kano```  just 10 tweet  
