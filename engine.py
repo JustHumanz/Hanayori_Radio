@@ -25,14 +25,14 @@ def curlup():
 
     elif data_up != None and data_now == None:
         for i in range(len(data_up)):
-            tmp = data_up[i]["Data"]["liveSchedule"]
+            tmp = data_up[i]["liveSchedule"]
             data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
         return(data_up)
 
     else:
         for i in range(len(data_up)):
-            tmp = data_up[i]["Data"]["liveSchedule"]
-            data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
+            tmp = data_up[i]["liveSchedule"]
+            data_up[i]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
         
         for ii in range(len(data_now)): 
             data_up.append(data_now[ii])
@@ -53,8 +53,8 @@ def curllast():
     response = urllib.request.urlopen(req)
     data_last = json.loads(response.read())
     for i in range(len(data_last)):
-        tmp = data_last[i]["Data"]["publishedAt"]
-        data_last[i]["Data"]["publishedAt"] = timejst(tmp,"%Y-%m-%d %H:%M")
+        tmp = data_last[i]["publishedAt"]
+        data_last[i]["publishedAt"] = timejst(tmp,"%Y-%m-%d %H:%M")
     
     return(data_last)
 
@@ -72,16 +72,16 @@ def live_status():
     data_now = curlnow()
     if data_now != None :
         for i in range(len(data_now)):
-            if data_now[i]['Data']['ytChannelId'] == channelid[0] and data_now[i]['Data']['status'] == 'live':
+            if data_now[i]['ytChannelId'] == channelid[0] and data_now[i]['status'] == 'live':
                 live_member[0]["Kano"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[1] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['ytChannelId'] == channelid[1] and data_now[i]['status'] == 'live':
                 live_member[0]["Hitona"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[2] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['ytChannelId'] == channelid[2] and data_now[i]['status'] == 'live':
                 live_member[0]["Hareru"] = True
                 live_count += 1
-            elif data_now[i]['Data']['ytChannelId'] == channelid[3] and data_now[i]['Data']['status'] == 'live':
+            elif data_now[i]['ytChannelId'] == channelid[3] and data_now[i]['status'] == 'live':
                 live_member[0]["Nonono"] = True
                 live_count += 1
                 

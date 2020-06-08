@@ -11,13 +11,8 @@ import (
 	"google.golang.org/api/iterator"
 )
 
-//struct for convert map to json
-type VtubeData struct {
-	Data map[string]interface{} `json:"Data"`
-}
-
 func exec(iter *firestore.DocumentIterator) string {
-	var tmp []VtubeData
+	var tmp []interface{}
 	for {
 		doc, err := iter.Next()
 		if err == iterator.Done {
@@ -26,7 +21,7 @@ func exec(iter *firestore.DocumentIterator) string {
 		if err != nil {
 			log.Fatal(err)
 		}
-		tmp = append(tmp, VtubeData{Data: doc.Data()})
+		tmp = append(tmp, doc.Data())
 	}
 
 	jso, err := json.Marshal(tmp)

@@ -2,11 +2,9 @@
     <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <link rel="icon" href="/static/img/icon.png" type="image/icon type">
     <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}"  type="image/icon type">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sidenav.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/plyr.css') }}"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>
             {{ title }}
@@ -29,44 +27,27 @@
                 <p><a class="live" href="/Live"><i class="large material-icons">live_tv</i></a></p>
                 <p><a class="upcome" href="/Upcome"><i class="large material-icons">queue_play_next</i></a></p>
                 <p><a class="last" href="/Last"><i class="large material-icons">list</i></a></p>
-
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-                {% if data is none %}
-                    <h3>Look like no scheduled live stream for now</h3>
-                    <img src="/static/img/asset/parerunworry.png" alt="">
-                {% else %}
-                    <ul>
-                        {% for result in data %}
-                            {% if data[loop.index0]['Data']['status'] == "upcoming" %}
-                                <li>
-                                    <div class="infotime">
-                                        <a href="https://www.youtube.com/watch?v={{ data[loop.index0]['Data']['ytVideoId'] }}">
-                                            <img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt="">
-                                            <div class="time">
-                                                <h3> {{data[loop.index0]['Data']['liveSchedule']}} JST</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </li>
-                            {% elif data[loop.index0]['Data']['status'] == "live" %}
-                                <li>
-                                    <div class="infotime">
-                                        <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}">
-                                            <img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt="">
-                                            <div class="time">
-                                                <h3>Live now</h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </li>   
-                            {% endif %}
-                        {% endfor %}
+                <ul>
+                    {% for result in data %}
+                        {% if data[loop.index0]['status'] == "past" %}
+                            <li>
+                                <div class="infotime">
+                                    <a href="/Video/{{ data[loop.index0]['ytVideoId'] }}">
+                                        <img src="https://img.youtube.com/vi/{{ data[loop.index0]['ytVideoId'] }}/maxresdefault.jpg" alt="">
+                                        <div class="time list">
+                                            <h3> {{data[loop.index0]['publishedAt']}} JST</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                     </ul>
-                    
-                {% endif %}
             </div>
+
     </body>
     <script>
         const toggler = document.querySelector(".menu__toggler");
@@ -78,4 +59,7 @@
         menu.classList.toggle("active");
         });
     </script>
+        <script src="{{ url_for('static', filename='js/plyr.polyfilled.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/utility.js') }}"></script>
 </html>

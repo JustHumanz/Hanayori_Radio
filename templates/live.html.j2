@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="profile">
-            {% for result in status %}
+             {% for result in status %}
                 {%for name in result %}
                     {% if status[0][name] == True %}
                         <a class="{{ name }}" href="https://www.youtube.com/channel/{{cnid[loop.index0]}}?sub_confirmation=1" target="_blank"><img src="/static/img/profile_live/{{ name }}.jpg"></a>
@@ -30,22 +30,32 @@
             </div>
             <div class="menu__toggler"><span></span></div>
             <div class=main>
-                <ul>
-                    {% for result in data %}
-                        {% if data[loop.index0]['Data']['status'] == "past" %}
-                            <li>
-                                <div class="infotime">
-                                    <a href="/Video/{{ data[loop.index0]['Data']['ytVideoId'] }}">
-                                        <img src="https://img.youtube.com/vi/{{ data[loop.index0]['Data']['ytVideoId'] }}/maxresdefault.jpg" alt="">
-                                        <div class="time list">
-                                            <h3> {{data[loop.index0]['Data']['publishedAt']}} JST</h3>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
+            {% if data is none %}
+                <h3> Look like no live stream for now </h3>
+                <img src="/static/img/asset/parerunworry.png" alt="">
+            {% else %}
+                <ul style="padding-left: 5%;padding-top: 1%;">
+                {% for result in data %}
+                    {% if data[loop.index0]['status'] == "live" %}
+                        {% if live_count > 1 %}
+                        <li style="padding: 1%;">
+                            {% if loop.index == live_count %}
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ data[loop.index0]['ytVideoId'] }}?rel=0&amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% else %}
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ data[loop.index0]['ytVideoId'] }}?rel=0&amp;autoplay=1;mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="/Video/{{ data[loop.index0]['ytVideoId'] }}">
+                                <img src="https://img.youtube.com/vi/{{ data[loop.index0]['ytVideoId'] }}/maxresdefault.jpg" alt="">
+                            </a>
+                        </li>
                         {% endif %}
-                    {% endfor %}
-                    </ul>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
             </div>
 
     </body>
@@ -59,6 +69,7 @@
         menu.classList.toggle("active");
         });
     </script>
+    <script src="https://static.doubleclick.net/instream/ad_status.js"></script>
         <script src="{{ url_for('static', filename='js/plyr.polyfilled.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/plyr.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/utility.js') }}"></script>
