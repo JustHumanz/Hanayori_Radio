@@ -23,7 +23,7 @@ def main():
     live_member,live_count = engine.live_status()
     hanayori.logger.debug("Live count "+str(live_count))
     hanayori.logger.debug("Live member "+str(live_member))
-    return render_template('index.html',status=live_member,cnid=engine.channelid)
+    return render_template('index.html.j2',status=live_member,cnid=engine.channelid)
 
 @hanayori.route('/Upcome')
 def up():
@@ -32,7 +32,7 @@ def up():
         hanayori.logger.debug("Upcome data is null")    
     else:
         hanayori.logger.debug("Upcome data "+str(data))
-    return render_template('upcome.html',title='Upcoming',data=data,status=live_member,cnid=engine.channelid)
+    return render_template('upcome.html.j2',title='Upcoming',data=data,status=live_member,cnid=engine.channelid)
 
 @hanayori.route('/Live')
 def live():
@@ -41,15 +41,15 @@ def live():
         hanayori.logger.debug("Upcome data is null")
     else:
         hanayori.logger.debug("Live data "+str(data))
-    return render_template('live.html',title='Live',data=data,status=live_member,live_count=live_count,cnid=engine.channelid)
+    return render_template('live.html.j2',title='Live',data=data,status=live_member,live_count=live_count,cnid=engine.channelid)
 
 @hanayori.route('/Video/<ytid>')
 def video(ytid=None):
     hanayori.logger.debug("Youtube ID "+str(ytid))
-    return render_template('video.html',title='Video',ytid=ytid,status=live_member,cnid=engine.channelid)
+    return render_template('video.html.j2',title='Video',ytid=ytid,status=live_member,cnid=engine.channelid)
 
 @hanayori.route('/Last')
 def last():
     data = engine.curllast()
     hanayori.logger.debug("Last len data "+str(len(data)))
-    return render_template('last.html',title="Last live",data=engine.curllast(),status=live_member,cnid=engine.channelid)
+    return render_template('last.html.j2',title="Last live",data=engine.curllast(),status=live_member,cnid=engine.channelid)
