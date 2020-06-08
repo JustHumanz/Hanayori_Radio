@@ -26,7 +26,7 @@ def curlup():
     elif data_up != None and data_now == None:
         for i in range(len(data_up)):
             tmp = data_up[i]["liveSchedule"]
-            data_up[i]["Data"]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
+            data_up[i]["liveSchedule"] = timejst(tmp,"%H:%M:%S")
         return(data_up)
 
     else:
