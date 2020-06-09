@@ -87,7 +87,7 @@ func main() {
 		now := query(client, q)
 		io.WriteString(w, now)
 	})
-	r.HandleFunc("/twitter/{member}/{limit:[0-9]+}", twitter)
+	r.HandleFunc("/twitter/{member}/{limit:([0-9]|^all$)+}", twitter)
 	r.HandleFunc("/twitter/{member}", twitter)
 
 	// Bind to a port and pass our router in
