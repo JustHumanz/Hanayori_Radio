@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"regexp"
 	"strings"
 
 	"cloud.google.com/go/firestore"
@@ -87,8 +88,8 @@ func main() {
 		now := query(client, q)
 		io.WriteString(w, now)
 	})
-	r.HandleFunc("/twitter/{member}/{limit:([0-9]|^all$)+}", twitter)
 	r.HandleFunc("/twitter/{member}", twitter)
+	r.HandleFunc("/twitter/{member}/{limit}", twitter)
 
 	// Bind to a port and pass our router in
 	log.Fatal(http.ListenAndServe(":8000", r))
@@ -98,12 +99,18 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	var last string
 	vars := mux.Vars(r)
 	member := strings.ToLower(vars["member"])
-	limit := vars["limit"]
-	if limit == "all" {
-		limit = "100000"
-	} else if limit == "" {
+	limit := strings.ToLower(vars["limit"])
+
+	matched, _ := regexp.MatchString(`^[0-9]*$`, limit)
+
+	if limit == "" {
 		limit = "10"
+	} else if limit == "all" {
+		limit = "1337"
+	} else if matched == false {
+		return
 	}
+
 	if member == "kano" {
 		last = tw("#鹿乃art", limit)
 	} else if member == "hitona" {
