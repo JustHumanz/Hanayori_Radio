@@ -99,10 +99,11 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	member := strings.ToLower(vars["member"])
 	limit := vars["limit"]
-	if limit == "" {
+	if limit == "all" {
+		limit = "100000"
+	} else if limit == "" {
 		limit = "10"
 	}
-	//query in firestore
 	if member == "kano" {
 		last = tw("#鹿乃art", limit)
 	} else if member == "hitona" {
@@ -112,7 +113,7 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	} else if member == "nonono" {
 		last = tw("#ののののえ", limit)
 	} else if member == "all" {
-		last = tw("#鹿乃art #ひとなーと #はなまるお絵かき #ののののえ", limit)
+		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ", limit)
 	} else {
 		return
 	}
