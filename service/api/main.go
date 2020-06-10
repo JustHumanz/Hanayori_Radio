@@ -5,10 +5,12 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strings"
 
 	"cloud.google.com/go/firestore"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
 	firebase "firebase.google.com/go"
@@ -92,7 +94,9 @@ func main() {
 	r.HandleFunc("/twitter/{member}/{limit}", twitter)
 
 	// Bind to a port and pass our router in
-	log.Fatal(http.ListenAndServe(":8000", r))
+	loggedRouter := handlers.LoggingHandler(os.Stdout, r)
+	log.Println("listening on 8000")
+	http.ListenAndServe(":8000", loggedRouter)
 }
 
 func twitter(w http.ResponseWriter, r *http.Request) {
@@ -108,6 +112,7 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	} else if limit == "all" {
 		limit = "1337"
 	} else if matched == false {
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
@@ -122,6 +127,7 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	} else if member == "all" {
 		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ", limit)
 	} else {
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
