@@ -105,27 +105,25 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	member := strings.ToLower(vars["member"])
 	limit := strings.ToLower(vars["limit"])
 
-	matched, _ := regexp.MatchString(`^[0-9]*$`, limit)
-
 	if limit == "" {
 		limit = "10"
 	} else if limit == "all" {
 		limit = "1337"
-	} else if matched == false {
+	} else if matched, _ := regexp.MatchString(`^[0-9]*$`, limit); matched == false {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
 	if member == "kano" {
-		last = tw("#鹿乃art", limit)
+		last = tw("#鹿乃art -filter:retweets filter:media OR filter:links", limit)
 	} else if member == "hitona" {
-		last = tw("#ひとなーと", limit)
+		last = tw("#ひとなーと -filter:retweets filter:media OR filter:links", limit)
 	} else if member == "hareru" || member == "parerun" {
-		last = tw("#はなまるお絵かき", limit)
+		last = tw("#はなまるお絵かき -filter:retweets filter:media OR filter:links", limit)
 	} else if member == "nonono" {
-		last = tw("#ののののえ", limit)
+		last = tw("#ののののえ -filter:retweets filter:media OR filter:links", limit)
 	} else if member == "all" {
-		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ", limit)
+		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ -filter:retweets filter:media OR filter:links", limit)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
 		return
