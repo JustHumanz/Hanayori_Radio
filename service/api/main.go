@@ -115,15 +115,15 @@ func twitter(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if member == "kano" {
-		last = tw("#鹿乃art -filter:retweets filter:media OR filter:links", limit)
+		last = tw("#鹿乃art -filter:retweets filter:media", limit)
 	} else if member == "hitona" {
-		last = tw("#ひとなーと -filter:retweets filter:media OR filter:links", limit)
+		last = tw("#ひとなーと -filter:retweets filter:media", limit)
 	} else if member == "hareru" || member == "parerun" {
-		last = tw("#はなまるお絵かき -filter:retweets filter:media OR filter:links", limit)
+		last = tw("#はなまるお絵かき -filter:retweets filter:media", limit)
 	} else if member == "nonono" {
-		last = tw("#ののののえ -filter:retweets filter:media OR filter:links", limit)
+		last = tw("#ののののえ -filter:retweets filter:media", limit)
 	} else if member == "all" {
-		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ -filter:retweets filter:media OR filter:links", limit)
+		last = tw("#鹿乃art OR #ひとなーと OR #はなまるお絵かき OR #ののののえ -filter:retweets filter:media", limit)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
 		return
